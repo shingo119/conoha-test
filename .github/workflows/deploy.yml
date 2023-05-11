@@ -23,9 +23,9 @@ jobs:
             source .bashrc
             cd $DIR
             pwd
-            git pull origin master -f
+            git pull origin main -f
             composer.phar install
             php artisan migrate
             php artisan db:seed --force
         env:
-          DIR: public_html/
+          DIR: public_html/conoha-test
