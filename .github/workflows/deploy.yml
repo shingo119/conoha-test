@@ -21,6 +21,7 @@ jobs:
           script_stop: true
           script: |
             source .bashrc
+            cd public_html
             mkdir conoha-test
             cd $DIR
             pwd
