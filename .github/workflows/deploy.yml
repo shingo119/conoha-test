@@ -1,0 +1,29 @@
+name: Deploy into production server
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy at remote server
+        uses: appleboy/ssh-action@master
+        with:
+          host:     ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key:      ${{ secrets.SSH_KEY }}
+          port:     ${{ secrets.SSH_PORT }}
+          envs: DIR
+          script_stop: true
+          script: |
+            source .bashrc
+            cd $DIR
+            git pull origin master -f
+            composer.phar install
+            php artisan migrate
+            php artisan db:seed --force
+        env:
+          DIR: public_html/hoge
