@@ -20,53 +20,25 @@ jobs:
           envs: DIR
           script_stop: true
           script: |
-            # source .bashrc
-            # cd $DIR
             source .bashrc || { echo "Failed to source .bashrc"; exit 1; }
             cd $DIR || { echo "Failed to change directory to $DIR"; exit 1; }
             echo "start"
             # Check if .git directory exists
             if [ ! -d ".git" ]; then
-              git clone https://github.com/shingo119/conoha-test.git .
-              if [ $? -ne 0 ]; then
-                echo "Failed to clone repository"
-                exit 1
-              fi
+              git clone https://github.com/shingo119/conoha-test.git . || { echo "Failed to clone repository"; exit 1; }
             else
-              git pull origin main -f
-              if [ $? -ne 0 ]; then
-                echo "Failed to pull from repository"
-                exit 1
-              fi
+              git pull origin main -f || { echo "Failed to pull from repository"; exit 1; }
             fi
 
             # Check if composer.phar exists, if not download and install it
             if [ ! -f composer.phar ]; then
-                curl -sS https://getcomposer.org/installer | php
-                if [ $? -ne 0 ]; then
-                  echo "Failed to download composer"
-                  exit 1
-                fi
+                curl -sS https://getcomposer.org/installer | php || { echo "Failed to download composer"; exit 1; }
             fi
 
-            php composer.phar install
-            if [ $? -ne 0 ]; then
-              echo "Failed to install PHP dependencies"
-              exit 1
-            fi
+            php composer.phar install || { echo "Failed to install PHP dependencies"; exit 1; }
 
-            php artisan migrate
-            STATUS=$?
-            echo $STATUS
-            if [ $STATUS -ne 0 ]; then
-              echo "Failed to run migrations"
-              exit 1
-            fi
+            php artisan migrate || { echo "Failed to run migrations"; exit 1; }
 
-            php artisan db:seed --force
-            if [ $? -ne 0 ]; then
-              echo "Failed to seed database"
-              exit 1
-            fi
+            php artisan db:seed --force || { echo "Failed to seed database
         env:
           DIR: public_html/yubase-conoha-test.com
