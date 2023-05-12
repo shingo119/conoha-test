@@ -21,13 +21,10 @@ jobs:
           script_stop: true
           script: |
             source .bashrc
-            cd public_html
-            mkdir conoha-test
             cd $DIR
-            pwd
             git pull origin main -f
             composer.phar install
             php artisan migrate
             php artisan db:seed --force
         env:
-          DIR: public_html/conoha-test
+          DIR: public_html/yubase-conoha-test.com
