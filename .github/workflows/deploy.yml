@@ -51,8 +51,7 @@ jobs:
             git pull origin main
 
             # composerがインストールされていなければインストールする
-            if ! command -v composer &> /dev/null
-            then
+            if [ ! -f composer.phar ]; then
                 curl -sS https://getcomposer.org/installer | php
             fi
 
