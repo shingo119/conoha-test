@@ -23,7 +23,7 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-composer-
-            
+
       - name: deploy at remote server
         uses: appleboy/ssh-action@master
         with:
@@ -43,12 +43,19 @@ jobs:
             fi
             pwd
 
-            # Check if .git directory exists
+            # .git directoryがなければcloneする
             if [ ! -d .git ]; then
               git clone https://github.com/shingo119/conoha-test.git
             fi
 
             git pull origin main
+
+            # composerがインストールされていなければインストールする
+            if ! command -v composer &> /dev/null
+            then
+                curl -sS https://getcomposer.org/installer | php
+                mv composer.phar /usr/local/bin/composer
+            fi
 
             composer install
             php artisan migrate
