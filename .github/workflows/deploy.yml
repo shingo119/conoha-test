@@ -27,7 +27,7 @@ jobs:
 
             # Check if .git directory exists
             if [ ! -d ".git" ]; then
-              git clone https://github.com/shingo119/conoha-test.git .
+              git clone https://github.com/shingo119/conoha-test.git
             else
               git pull origin main
             fi
