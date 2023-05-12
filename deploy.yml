@@ -30,7 +30,7 @@ jobs:
             git pull origin main -f
             fi
 
-            php composer.phar install
+            composer.phar install
             php artisan migrate
             php artisan db:seed --force
         env:
