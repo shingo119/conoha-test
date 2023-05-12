@@ -27,7 +27,7 @@ jobs:
             if [ ! -d ".git" ]; then
               git clone https://github.com/shingo119/conoha-test.git .
             else
-            git pull origin main -f
+              git pull origin main -f
             fi
 
             # Check if composer.phar exists, if not download and install it
