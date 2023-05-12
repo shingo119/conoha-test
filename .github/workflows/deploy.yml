@@ -54,8 +54,9 @@ jobs:
             fi
 
             php artisan migrate
-            echo $?
-            if [ $? -ne 0 ]; then
+            STATUS=$?
+            echo $STATUS
+            if [ $STATUS -ne 0 ]; then
               echo "Failed to run migrations"
               exit 1
             fi
