@@ -20,8 +20,10 @@ jobs:
           envs: DIR
           script_stop: true
           script: |
-            source .bashrc
-            cd $DIR
+            # source .bashrc
+            # cd $DIR
+            source .bashrc || { echo "Failed to source .bashrc"; exit 1; }
+            cd $DIR || { echo "Failed to change directory to $DIR"; exit 1; }
             echo "start"
             # Check if .git directory exists
             if [ ! -d ".git" ]; then
