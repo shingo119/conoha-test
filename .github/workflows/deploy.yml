@@ -31,7 +31,11 @@ jobs:
             git pull origin main -f
             fi
 
-            php composer install
+            # Check if composer.phar exists, if not download and install it
+            if [ ! -f composer.phar ]; then
+                curl -sS https://getcomposer.org/installer | php
+            fi
+            
             php artisan migrate
             php artisan db:seed --force
         env:
