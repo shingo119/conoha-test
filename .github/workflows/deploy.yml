@@ -21,10 +21,7 @@ jobs:
           script_stop: true
           script: |
             source .bashrc
-            pwd
             cd $DIR
-            pwd
-            git remote -v
 
             # Check if .git directory exists
             if [ ! -d ".git" ]; then
