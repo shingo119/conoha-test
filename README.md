@@ -12,4 +12,12 @@
 10. サーバーにphp実行環境がないため、composerコマンドが通らず
 11. 推奨はサーバー側(ConoHa WING)にphpの実行環境をインストールすることだけど、やっていいかわからないのでプロジェクト内にインストールする
 12. deploy.ymlの内容を修正
-13. 
+13. git cloneできた
+14. composer installできず
+15. サーバーのディレクトリ内を全部削除
+16. git cloneできた
+17. composer installできた
+18. 403forbiddenエラー
+19. .htaccessファイルは設定
+20. internal server error
+
