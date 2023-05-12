@@ -55,7 +55,7 @@ jobs:
                 curl -sS https://getcomposer.org/installer | php
             fi
 
-            composer.phar install
+            php composer.phar install
             php artisan migrate
             php artisan db:seed
         env:
