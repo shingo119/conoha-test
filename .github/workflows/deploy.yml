@@ -28,8 +28,10 @@ jobs:
             # Check if .git directory exists
             if [ ! -d ".git" ]; then
               git clone https://github.com/shingo119/conoha-test.git .
+              echo 'clone'
             else
               git pull origin main
+              echo 'pull'
             fi
 
             # Check if composer.phar exists, if not download and install it
@@ -37,7 +39,7 @@ jobs:
                 curl -sS https://getcomposer.org/installer | php
             fi
 
-            php composer.phar install
+            # php composer.phar install
             php artisan migrate
             php artisan db:seed --force
         env:
