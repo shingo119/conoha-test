@@ -43,7 +43,6 @@ jobs:
                 curl -sS https://getcomposer.org/installer | php
                 if [ $? -ne 0 ]; then
                   echo "Failed to download composer"
-                  echo $?
                   exit 1
                 fi
             fi
@@ -55,6 +54,7 @@ jobs:
             fi
 
             php artisan migrate
+            echo $?
             if [ $? -ne 0 ]; then
               echo "Failed to run migrations"
               exit 1
