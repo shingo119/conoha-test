@@ -9,3 +9,7 @@
 7. GitHub Actionsのymlファイルを、初回はgit clone、２回目以降はgit pullになるように修正
 8. git clone失敗
 9. ConoHa WINGのデプロイすべきフォルダに既にerrorフォルダがあったため削除して再度デプロイ
+10. サーバーにphp実行環境がないため、composerコマンドが通らず
+11. 推奨はサーバー側(ConoHa WING)にphpの実行環境をインストールすることだけど、やっていいかわからないのでプロジェクト内にインストールする
+12. deploy.ymlの内容を修正
+13. 
