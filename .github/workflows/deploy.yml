@@ -22,20 +22,19 @@ jobs:
           script: |
             source .bashrc
             cd $DIR
-            pwd
+            
             if [ -d "conoha-test" ]; then
               cd conoha-test
             fi
-            pwd
+            
             # Check if .git directory exists
             if [ ! -d ".git" ]; then
               git clone https://github.com/shingo119/conoha-test.git
-            else
-              git pull
             fi
 
+            git pull origin main
             php composer install
             php artisan migrate
-            php artisan db:seed --force
+            php artisan db:seed
         env:
           DIR: public_html/yubase-conoha-test.com
