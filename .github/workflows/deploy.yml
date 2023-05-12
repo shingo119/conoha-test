@@ -22,6 +22,7 @@ jobs:
           script: |
             source .bashrc
             cd $DIR
+            git init
             git pull origin main -f
             composer.phar install
             php artisan migrate
