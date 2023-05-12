@@ -20,10 +20,9 @@ jobs:
           envs: DIR
           script_stop: true
           script: |
-            set -ex
             source .bashrc
             cd $DIR
-
+            pwd
             # Check if .git directory exists
             if [ ! -d ".git" ]; then
               git clone https://github.com/shingo119/conoha-test.git .
