@@ -9,6 +9,21 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+            
       - name: deploy at remote server
         uses: appleboy/ssh-action@master
         with:
@@ -35,12 +50,7 @@ jobs:
 
             git pull origin main
 
-            # Check if composer.phar exists, if not download and install it
-            if [ ! -f composer.phar ]; then
-                curl -sS https://getcomposer.org/installer | php
-            fi
-
-            composer.phar install
+            composer install
             php artisan migrate
             php artisan db:seed
         env:
