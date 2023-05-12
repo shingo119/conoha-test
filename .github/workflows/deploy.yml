@@ -39,7 +39,7 @@ jobs:
                 curl -sS https://getcomposer.org/installer | php
             fi
 
-            # php composer.phar install
+            php composer.phar install
             php artisan migrate
             php artisan db:seed --force
         env:
