@@ -23,12 +23,14 @@ jobs:
             source .bashrc
             cd $DIR
 
+            if [ -d "conoha-test" ]; then
+              cd conoha-test
+            fi
+
             # Check if .git directory exists
             if [ ! -d ".git" ]; then
               git clone https://github.com/shingo119/conoha-test.git
-              cd conoha-test
             else
-              cd conoha-test
               git pull origin main
             fi
 
