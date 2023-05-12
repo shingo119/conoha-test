@@ -31,7 +31,7 @@ jobs:
             if [ ! -d ".git" ]; then
               git clone https://github.com/shingo119/conoha-test.git
             else
-              git pull origin main
+              git pull
             fi
 
             php composer install
