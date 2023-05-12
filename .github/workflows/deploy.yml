@@ -27,17 +27,43 @@ jobs:
             # Check if .git directory exists
             if [ ! -d ".git" ]; then
               git clone https://github.com/shingo119/conoha-test.git .
+              if [ $? -ne 0 ]; then
+                echo "Failed to clone repository"
+                exit 1
+              fi
             else
-            git pull origin main -f
+              git pull origin main -f
+              if [ $? -ne 0 ]; then
+                echo "Failed to pull from repository"
+                exit 1
+              fi
             fi
 
             # Check if composer.phar exists, if not download and install it
             if [ ! -f composer.phar ]; then
                 curl -sS https://getcomposer.org/installer | php
+                if [ $? -ne 0 ]; then
+                  echo "Failed to download composer"
+                  exit 1
+                fi
             fi
 
             php composer.phar install
+            if [ $? -ne 0 ]; then
+              echo "Failed to install PHP dependencies"
+              exit 1
+            fi
+
             php artisan migrate
+            if [ $? -ne 0 ]; then
+              echo "Failed to run migrations"
+              exit 1
+            fi
+
             php artisan db:seed --force
+            if [ $? -ne 0 ]; then
+              echo "Failed to seed database"
+              exit 1
+            fi
         env:
           DIR: public_html/yubase-conoha-test.com
