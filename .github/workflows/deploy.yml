@@ -44,21 +44,21 @@ jobs:
             else
               cd $PROJECT_DIR
               echo "git pull origin main"
-              git pull origin main
+              # git pull origin main
             fi
 
-            # composerがインストールされていなければインストールする
-            if [ ! -f composer.phar ]; then
-                curl -sS https://getcomposer.org/installer | php
-            fi
+            # # composerがインストールされていなければインストールする
+            # if [ ! -f composer.phar ]; then
+            #     curl -sS https://getcomposer.org/installer | php
+            # fi
 
-            php composer.phar install
+            # php composer.phar install
             
-            # mysql.server start
-            service mysql start
-            php artisan migrate --force
-            php artisan db:seed --force
+            # # mysql.server start
+            # service mysql start
+            # php artisan migrate --force
+            # php artisan db:seed --force
 
-            npm i && npm run build
+            # npm i && npm run build
         env:
           PROJECT_DIR: "conoha-test"
