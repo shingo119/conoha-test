@@ -38,10 +38,7 @@ jobs:
             source .bashrc
             pwd
 
-            cd $PROJECT_DIR
-            pwd
-
-            if [ ! -d "$PROJECT_DIR" ]; then
+            if [ -d "$PROJECT_DIR" ]; then
               git clone https://github.com/shingo119/conoha-test.git $PROJECT_DIR
               cd $PROJECT_DIR
               echo "exists"
