@@ -41,14 +41,15 @@ jobs:
             cd $PROJECT_DIR
             pwd
 
-            # if [ ! -d "$PROJECT_DIR" ]; then
-            #   git clone https://github.com/shingo119/conoha-test.git $PROJECT_DIR
-            #   cd $PROJECT_DIR
+            if [ ! -d "$PROJECT_DIR" ]; then
+              git clone https://github.com/shingo119/conoha-test.git $PROJECT_DIR
+              cd $PROJECT_DIR
+              echo "exists"
             # else
             #   cd $PROJECT_DIR
             #   echo "git pull origin main"
             #   # git pull origin main
-            # fi
+            fi
 
             # # composerがインストールされていなければインストールする
             # if [ ! -f composer.phar ]; then
