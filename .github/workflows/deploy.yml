@@ -38,31 +38,31 @@ jobs:
             source .bashrc
             # cd $DIR
             pwd
-            echo $PROJECT_DIR
-            echo "$PROJECT_DIR"
+            echo $DIR
+            echo "$DIR"
 
-            if [ ! -d $PROJECT_DIR ]; then
-              # git clone https://github.com/shingo119/conoha-test.git $PROJECT_DIR
+            if [ ! -d $DIR ]; then
+              # git clone https://github.com/shingo119/conoha-test.git $DIR
               echo "not exist"
             fi
 
-            if [ ! -d "$PROJECT_DIR" ]; then
-              # git clone https://github.com/shingo119/conoha-test.git $PROJECT_DIR
+            if [ ! -d "$DIR" ]; then
+              # git clone https://github.com/shingo119/conoha-test.git $DIR
               echo "not exist2"
-              mkdir "$PROJECT_DIR"
+              mkdir "$DIR"
             fi
 
-            if [ -d $PROJECT_DIR ]; then
+            if [ -d $DIR ]; then
               echo "exist"
             fi
 
-            if [ -d "$PROJECT_DIR" ]; then
+            if [ -d "$DIR" ]; then
               echo "exist2"
             fi
 
             # git clone https://github.com/shingo119/conoha-test.git
 
-            # cd $PROJECT_DIR
+            # cd $DIR
 
             # composerがインストールされていなければインストールする
             # if [ ! -f composer.phar ]; then
@@ -83,4 +83,4 @@ jobs:
             # php artisan migrate --force
             # php artisan db:seed --force
         env:
-          PROJECT_DIR: "conoha-test"
+          DIR: "conoha-test"
