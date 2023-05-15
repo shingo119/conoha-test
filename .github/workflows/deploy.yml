@@ -48,6 +48,7 @@ jobs:
               pwd
               echo "git pull origin main"
               git remote -v
+              git pull
             fi
             
             
