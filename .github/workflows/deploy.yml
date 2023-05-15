@@ -52,10 +52,12 @@ jobs:
             fi
 
             php composer.phar install
-            npm i && npm run dev
+            
             # mysql.server start
             service mysql start
             php artisan migrate --force
             php artisan db:seed --force
+
+            npm i && npm run dev
         env:
           PROJECT_DIR: "conoha-test"
