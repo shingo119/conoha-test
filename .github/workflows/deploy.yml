@@ -61,7 +61,8 @@ jobs:
             php composer.phar install
             
             # mysql.server start
-            service mysql start
+            # service mysql start
+            systemctl start mysql
             php artisan migrate --force
             php artisan db:seed --force
 
