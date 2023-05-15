@@ -45,23 +45,19 @@ jobs:
 
             cd $PROJECT_DIR
 
-            composer install
+            # composerがインストールされていなければインストールする
+            if [ ! -f composer.phar ]; then
+                curl -sS https://getcomposer.org/installer | php
+            fi
+
+            php composer.phar install
             mysql.server start
             php artisan migrate --force
             php artisan db:seed --force
 
-
-            # .git directoryがなければcloneする
-            # if [ ! -d .git ]; then
-            #   git clone https://github.com/shingo119/conoha-test.git
-            # fi
-
             # git pull origin main
 
-            # composerがインストールされていなければインストールする
-            # if [ ! -f composer.phar ]; then
-            #     curl -sS https://getcomposer.org/installer | php
-            # fi
+            
 
             # php composer.phar install
             # mysql.server start
