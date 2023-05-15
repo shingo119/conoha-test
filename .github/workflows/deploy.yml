@@ -43,10 +43,13 @@ jobs:
               cd $PROJECT_DIR
             fi
 
-            cd $PROJECT_DIR
-            pwd
-            echo "git pull origin main"
-            git pull origin main
+            if [ -d "$PROJECT_DIR" ]; then
+              cd $PROJECT_DIR
+              pwd
+              echo "git pull origin main"
+              git pull origin main -f
+            fi
+            
             
 
             # # composerがインストールされていなければインストールする
