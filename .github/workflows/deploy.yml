@@ -39,22 +39,24 @@ jobs:
             # cd $DIR
             pwd
 
-            if [ ! -d $PROJECT_DIR ]; then
-              echo "git clone"
-              git clone https://github.com/shingo119/conoha-test.git $PROJECT_DIR
-            fi
+            # if [ ! -d $PROJECT_DIR ]; then
+            #   echo "git clone"
+            #   git clone https://github.com/shingo119/conoha-test.git $PROJECT_DIR
+            # fi
 
-            cd $PROJECT_DIR
+            git clone https://github.com/shingo119/conoha-test.git
+
+            # cd $PROJECT_DIR
 
             # composerがインストールされていなければインストールする
-            if [ ! -f composer.phar ]; then
-                curl -sS https://getcomposer.org/installer | php
-            fi
+            # if [ ! -f composer.phar ]; then
+            #     curl -sS https://getcomposer.org/installer | php
+            # fi
 
-            php composer.phar install
-            mysql.server start
-            php artisan migrate --force
-            php artisan db:seed --force
+            # php composer.phar install
+            # mysql.server start
+            # php artisan migrate --force
+            # php artisan db:seed --force
 
             # git pull origin main
 
