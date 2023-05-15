@@ -36,40 +36,26 @@ jobs:
           script_stop: true
           script: |
             source .bashrc
-            # cd $DIR
-            pwd
+            pwd # ディレクトリ確認
 
-            if [ ! -d $PROJECT_DIR ]; then
-              # git clone https://github.com/shingo119/conoha-test.git $PROJECT_DIR
-              echo "not exist"
-            fi
-
+            # プロジェクトディレクトリがなければクローンする
             if [ ! -d "$PROJECT_DIR" ]; then
-              # git clone https://github.com/shingo119/conoha-test.git $PROJECT_DIR
-              echo "not exist2"
+              git clone https://github.com/shingo119/conoha-test.git $PROJECT_DIR
+            else
+              # プロジェクトディレクトリがあればpullする
+              cd $PROJECT_DIR
+              git pull origin main
             fi
 
-            # git clone https://github.com/shingo119/conoha-test.git
+            # composerがインストールされていなければプロジェクト内にインストールする
+            if [ ! -f composer.phar ]; then
+                curl -sS https://getcomposer.org/installer | php
+            fi
 
-            # cd $PROJECT_DIR
-
-            # composerがインストールされていなければインストールする
-            # if [ ! -f composer.phar ]; then
-            #     curl -sS https://getcomposer.org/installer | php
-            # fi
-
-            # php composer.phar install
-            # mysql.server start
-            # php artisan migrate --force
-            # php artisan db:seed --force
-
-            # git pull origin main
-
-            
-
-            # php composer.phar install
-            # mysql.server start
-            # php artisan migrate --force
-            # php artisan db:seed --force
+            # プロジェクトディレクトリのcomposerでインストールする
+            php composer.phar install
+            mysql.server start
+            php artisan migrate --force
+            php artisan db:seed --force
         env:
           PROJECT_DIR: conoha-test
