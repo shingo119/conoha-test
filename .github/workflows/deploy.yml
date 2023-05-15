@@ -41,9 +41,7 @@ jobs:
             if [ ! -d "$PROJECT_DIR" ]; then
               git clone https://github.com/shingo119/conoha-test.git $PROJECT_DIR
               cd $PROJECT_DIR
-            fi
-
-            if [ -d "$PROJECT_DIR" ]; then
+            else
               cd $PROJECT_DIR
               pwd
               echo "git pull origin main"
