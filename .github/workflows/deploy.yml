@@ -32,55 +32,28 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key:      ${{ secrets.SSH_KEY }}
           port:     ${{ secrets.SSH_PORT }}
-          envs: DIR
+          envs: PROJECT_DIR
           script_stop: true
           script: |
             source .bashrc
-            # cd $DIR
             pwd
-            echo $DIR
-            echo "$DIR"
 
-            if [ ! -d $DIR ]; then
-              # git clone https://github.com/shingo119/conoha-test.git $DIR
-              echo "not exist"
+            if [ ! -d $PROJECT_DIR ]; then
+              git clone https://github.com/shingo119/conoha-test.git $PROJECT_DIR
+              cd $PROJECT_DIR
+            else
+              cd $PROJECT_DIR
+              git pull origin main
             fi
-
-            if [ ! -d "$DIR" ]; then
-              # git clone https://github.com/shingo119/conoha-test.git $DIR
-              echo "not exist2"
-              mkdir "$DIR"
-            fi
-
-            if [ -d $DIR ]; then
-              echo "exist"
-            fi
-
-            if [ -d "$DIR" ]; then
-              echo "exist2"
-            fi
-
-            # git clone https://github.com/shingo119/conoha-test.git
-
-            # cd $DIR
 
             # composerがインストールされていなければインストールする
-            # if [ ! -f composer.phar ]; then
-            #     curl -sS https://getcomposer.org/installer | php
-            # fi
+            if [ ! -f composer.phar ]; then
+                curl -sS https://getcomposer.org/installer | php
+            fi
 
-            # php composer.phar install
-            # mysql.server start
-            # php artisan migrate --force
-            # php artisan db:seed --force
-
-            # git pull origin main
-
-            
-
-            # php composer.phar install
-            # mysql.server start
-            # php artisan migrate --force
-            # php artisan db:seed --force
+            php composer.phar install
+            mysql.server start
+            php artisan migrate --force
+            php artisan db:seed --force
         env:
-          DIR: "conoha-test"
+          PROJECT_DIR: "conoha-test"
