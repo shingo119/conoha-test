@@ -40,31 +40,31 @@ jobs:
 
             if [ ! -d "$PROJECT_DIR" ]; then
               git clone https://github.com/shingo119/conoha-test.git $PROJECT_DIR
+              echo "git clone"
               cd $PROJECT_DIR
             fi
 
             if [ -d "$PROJECT_DIR" ]; then
               cd $PROJECT_DIR
               pwd
-              echo "git pull origin main"
-              git remote -v
               git pull
+              echo "git pull origin main"
             fi
             
             
 
             # # composerがインストールされていなければインストールする
-            # if [ ! -f composer.phar ]; then
-            #     curl -sS https://getcomposer.org/installer | php
-            # fi
+            if [ ! -f composer.phar ]; then
+                curl -sS https://getcomposer.org/installer | php
+            fi
 
-            # php composer.phar install
+            php composer.phar install
             
             # # mysql.server start
             # service mysql start
             # php artisan migrate --force
             # php artisan db:seed --force
 
-            # npm i && npm run build
+            npm i && npm run build
         env:
           PROJECT_DIR: conoha-test
