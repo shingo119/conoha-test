@@ -1,4 +1,14 @@
 # ConoHa WING でのサーバー構築
+
+## 初回デプロイ時に必要な作業
+1. ConoHaへSSH接続
+2. git clone
+3. .envの修正
+4. key:generateの実行
+5. php artisan migrateの実行
+6. シンボリックリンクの作成
+
+## 作業記録
 ### やったこと
 1. テストアプリケーション作成
 2. GitHub Actions用のymlファイル作成
@@ -21,3 +31,9 @@
 19. .htaccessファイルは設定
 20. internal server error
 
+### 坂尻さんからのアドバイスを元に修正
+1. .envの修正（DBの情報をConoHaのダッシュボードからコピペ）
+2. key:gernerateを実施
+3. php migrateを実施
+4. シンボリックリンクの作成
+5. デプロイ完了

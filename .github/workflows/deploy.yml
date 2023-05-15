@@ -51,6 +51,14 @@ jobs:
                 curl -sS https://getcomposer.org/installer | php
             fi
 
+            # breezeがなかったらインストールする
+            if [ ! -d vendor/laravel/breeze ]; then
+                php composer.phar require laravel/breeze --dev
+                php artisan breeze:install
+                npm install
+                npm run dev
+            fi
+
             php composer.phar install
             # mysql.server start
             service mysql start
