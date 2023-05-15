@@ -36,27 +36,49 @@ jobs:
           script_stop: true
           script: |
             source .bashrc
-            pwd # ディレクトリ確認
+            # cd $DIR
+            pwd
 
-            # プロジェクトディレクトリがなければクローンする
+            if [ ! -d $PROJECT_DIR ]; then
+              # git clone https://github.com/shingo119/conoha-test.git $PROJECT_DIR
+              echo "not exist"
+            fi
+
             if [ ! -d "$PROJECT_DIR" ]; then
-              git clone https://github.com/shingo119/conoha-test.git $PROJECT_DIR
-              cd "$PROJECT_DIR"
-            else
-              # プロジェクトディレクトリがあればpullする
-              cd "$PROJECT_DIR"
-              git pull origin main
+              # git clone https://github.com/shingo119/conoha-test.git $PROJECT_DIR
+              echo "not exist2"
+              mikdir $PROJECT_DIR
             fi
 
-            # composerがインストールされていなければプロジェクト内にインストールする
-            if [ ! -f composer.phar ]; then
-                curl -sS https://getcomposer.org/installer | php
+            if [ -d $PROJECT_DIR ]; then
+              echo "exist"
             fi
 
-            # プロジェクトディレクトリのcomposerでインストールする
-            php composer.phar install
-            mysql.server start
-            php artisan migrate --force
-            php artisan db:seed --force
+            if [ -d "$PROJECT_DIR" ]; then
+              echo "exist2"
+            fi
+
+            # git clone https://github.com/shingo119/conoha-test.git
+
+            # cd $PROJECT_DIR
+
+            # composerがインストールされていなければインストールする
+            # if [ ! -f composer.phar ]; then
+            #     curl -sS https://getcomposer.org/installer | php
+            # fi
+
+            # php composer.phar install
+            # mysql.server start
+            # php artisan migrate --force
+            # php artisan db:seed --force
+
+            # git pull origin main
+
+            
+
+            # php composer.phar install
+            # mysql.server start
+            # php artisan migrate --force
+            # php artisan db:seed --force
         env:
           PROJECT_DIR: conoha-test
