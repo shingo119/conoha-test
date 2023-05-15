@@ -83,4 +83,4 @@ jobs:
             # php artisan migrate --force
             # php artisan db:seed --force
         env:
-          PROJECT_DIR: conoha-test
+          PROJECT_DIR: "conoha-test"
