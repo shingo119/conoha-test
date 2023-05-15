@@ -41,9 +41,10 @@ jobs:
             # プロジェクトディレクトリがなければクローンする
             if [ ! -d "$PROJECT_DIR" ]; then
               git clone https://github.com/shingo119/conoha-test.git $PROJECT_DIR
+              cd "$PROJECT_DIR"
             else
               # プロジェクトディレクトリがあればpullする
-              cd $PROJECT_DIR
+              cd "$PROJECT_DIR"
               git pull origin main
             fi
 
