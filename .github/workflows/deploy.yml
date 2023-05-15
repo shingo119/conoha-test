@@ -38,11 +38,12 @@ jobs:
             source .bashrc
             pwd
 
-            if [ ! -d "$PROJECT_DIR" ];
-            then
+            if [ ! -d "$PROJECT_DIR" ]; then
               git clone https://github.com/shingo119/conoha-test.git $PROJECT_DIR
               cd $PROJECT_DIR
-            else
+            fi
+
+            if [ -d "$PROJECT_DIR" ]; then
               cd $PROJECT_DIR
               pwd
               echo "git pull origin main"
