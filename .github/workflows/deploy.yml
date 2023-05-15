@@ -36,28 +36,25 @@ jobs:
           script_stop: true
           script: |
             source .bashrc
-            cd $DIR
-            
-            if [ -d conoha-test ]; then
-              cd conoha-test
-            fi
+            # cd $DIR
             pwd
+            ls
 
             # .git directoryがなければcloneする
-            if [ ! -d .git ]; then
-              git clone https://github.com/shingo119/conoha-test.git
-            fi
+            # if [ ! -d .git ]; then
+            #   git clone https://github.com/shingo119/conoha-test.git
+            # fi
 
-            git pull origin main
+            # git pull origin main
 
             # composerがインストールされていなければインストールする
-            if [ ! -f composer.phar ]; then
-                curl -sS https://getcomposer.org/installer | php
-            fi
+            # if [ ! -f composer.phar ]; then
+            #     curl -sS https://getcomposer.org/installer | php
+            # fi
 
-            php composer.phar install
-            mysql.server start
-            php artisan migrate --force
-            php artisan db:seed --force
+            # php composer.phar install
+            # mysql.server start
+            # php artisan migrate --force
+            # php artisan db:seed --force
         env:
           DIR: public_html/yubase-conoha-test.com
