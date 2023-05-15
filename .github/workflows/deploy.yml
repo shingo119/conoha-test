@@ -39,8 +39,14 @@ jobs:
             # cd $DIR
             pwd
 
-            if [ ! -d conoha-test ]; then
-              git clone https://github.com/shingo119/conoha-test.git $PROJECT_DIR
+            if [ ! -d $DIR ]; then
+              # git clone https://github.com/shingo119/conoha-test.git $PROJECT_DIR
+              echo "not exist"
+            fi
+
+            if [ ! -d "$DIR" ]; then
+              # git clone https://github.com/shingo119/conoha-test.git $PROJECT_DIR
+              echo "not exist2"
             fi
 
             # git clone https://github.com/shingo119/conoha-test.git
@@ -66,5 +72,4 @@ jobs:
             # php artisan migrate --force
             # php artisan db:seed --force
         env:
-
-          PROJECT_DIR: conoha-test
+          DIR: conoha-test
