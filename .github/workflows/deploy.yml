@@ -38,7 +38,18 @@ jobs:
             source .bashrc
             # cd $DIR
             pwd
-            ls
+
+            if [ ! -d $PROJECT_DIR ]; then
+              git clone https://github.com/shingo119/conoha-test.git
+            fi
+
+            cd $PROJECT_DIR
+
+            composer install
+            mysql.server start
+            php artisan migrate --force
+            php artisan db:seed --force
+
 
             # .git directoryがなければcloneする
             # if [ ! -d .git ]; then
@@ -57,4 +68,4 @@ jobs:
             # php artisan migrate --force
             # php artisan db:seed --force
         env:
-          DIR: public_html/yubase-conoha-test.com
+          PROJECT_DIR: conoha-test
