@@ -38,7 +38,7 @@ jobs:
             source .bashrc
             pwd
 
-            if [ ! -d $PROJECT_DIR ]; then
+            if [ ! -d "$PROJECT_DIR" ]; then
               git clone https://github.com/shingo119/conoha-test.git $PROJECT_DIR
               cd $PROJECT_DIR
             else
@@ -61,4 +61,4 @@ jobs:
 
             # npm i && npm run build
         env:
-          PROJECT_DIR: "conoha-test"
+          PROJECT_DIR: conoha-test
