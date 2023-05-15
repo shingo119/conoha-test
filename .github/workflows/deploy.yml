@@ -61,9 +61,9 @@ jobs:
             php composer.phar install
             
             # # mysql.server start
-            # service mysql start
-            # php artisan migrate --force
-            # php artisan db:seed --force
+            service mysql start
+            php artisan migrate --force
+            php artisan db:seed --force
 
             npm i && npm run build
         env:
