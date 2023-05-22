@@ -1,11 +1,16 @@
 name: Deploy into production server
 
+# on:
+#   pull_request:
+#     types:
+#       - closed
+#     branches:
+#       - main
+
 on:
-  pull_request:
-    types:
-      - closed
+  push:
     branches:
-      - main
+    - main
 
 jobs:
   deploy:
