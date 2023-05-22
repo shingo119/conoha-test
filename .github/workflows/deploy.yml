@@ -54,7 +54,7 @@ jobs:
               echo "git pull origin main"
             fi
 
-            php composer install
+            composer install
 
             # php artisan config:cache
             # php artisan route:cache
