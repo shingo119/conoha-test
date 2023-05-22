@@ -58,10 +58,8 @@ jobs:
               curl -sS https://getcomposer.org/installer | php
             fi
 
-            php composer.phar install
-
             pwd
-            composer install
+            php composer.phar install
 
             # php artisan config:cache
             # php artisan route:cache
