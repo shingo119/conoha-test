@@ -34,7 +34,6 @@ jobs:
       - name: deploy at remote server
         uses: appleboy/ssh-action@master
         with:
-          remote_path: 
           host:     ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key:      ${{ secrets.SSH_KEY }}
