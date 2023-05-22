@@ -42,3 +42,4 @@
 8. npm installを実行
 
 ## 最終的にはドキュメントルートに`.htaccess`を編集したものを用意して成功
+push test
