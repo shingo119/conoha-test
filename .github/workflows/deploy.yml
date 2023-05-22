@@ -54,8 +54,14 @@ jobs:
               echo "git pull origin main"
             fi
 
+            if [ ! -f "composer.phar" ]; then
+              curl -sS https://getcomposer.org/installer | php
+            fi
+
+            php composer.phar install
+
             pwd
-            # composer install
+            composer install
 
             # php artisan config:cache
             # php artisan route:cache
