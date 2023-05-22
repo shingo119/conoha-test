@@ -1,9 +1,11 @@
 name: Deploy into production server
 
 on:
-  push:
+  pull_request:
+    types:
+      - closed
     branches:
-    - main
+      - main
 
 jobs:
   deploy:
@@ -36,36 +38,28 @@ jobs:
           script_stop: true
           script: |
             source .bashrc
-            pwd
+            cd $PROJECT_DIR
 
-            if [ ! -d "$PROJECT_DIR" ]; then
-              git clone https://github.com/shingo119/conoha-test.git $PROJECT_DIR
+            if [ ! -d ".git" ]; then
+              git clone https://github.com/shingo119/conoha-test.git .
               echo "git clone"
-              cd $PROJECT_DIR
             fi
 
-            if [ -d "$PROJECT_DIR" ]; then
-              cd $PROJECT_DIR
-              pwd
+            if [ -d ".git" ]; then
               git pull
               echo "git pull origin main"
             fi
-            
-            
 
-            # # composerがインストールされていなければインストールする
-            if [ ! -f composer.phar ]; then
-                curl -sS https://getcomposer.org/installer | php
-            fi
+            php composer install
 
-            php composer.phar install
-            
-            # mysql.server start
-            # service mysql start
-            systemctl start mysql
-            php artisan migrate --force
-            php artisan db:seed --force
+            # php artisan config:cache
+            # php artisan route:cache
+            # php artisan view:cache
+
+            # php artisan migrate --force
+            # php artisan db:seed --force
 
             npm i && npm run build
+            
         env:
-          PROJECT_DIR: conoha-test
+          PROJECT_DIR: "public_html/yubase-conoha-test.com"
